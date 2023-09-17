@@ -9,8 +9,9 @@ extract_weather_data() {
   temp=$(get_field "$weather_data" '.main.temp')
   temp_min=$(get_field "$weather_data" '.main.temp_min')
   temp_max=$(get_field "$weather_data" '.main.temp_max')
-  pressure=$(get_field "$weather_data" '.main.pressure')
   humidity=$(get_field "$weather_data" '.main.humidity')
+  pressure=$(get_field "$weather_data" '.main.pressure')
+  wind=$(get_field "$weather_data" '.wind.speed')
   sky_main=$(get_field "$weather_data" '.weather[0].main')
   sky_desc=$(get_field "$weather_data" '.weather[0].description')
 }
@@ -20,8 +21,9 @@ display_weather_data() {
   echo "Country: $country"
   echo "Coordinates: [$lat, $lon]"
   echo "Temperature: $temp °C (min: $temp_min, max: $temp_max)"
-  echo "Air Pressure: $pressure hPa"
   echo "Humidity: $humidity %"
+  echo "Air Pressure: $pressure hPa"
+  echo "Wind Speed: $wind m/s"
   echo "Weather: $sky_main, $sky_desc"
 }
 
