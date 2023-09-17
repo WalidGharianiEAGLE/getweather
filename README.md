@@ -24,13 +24,13 @@ sudo apt-get install jq
 2. Navigate to the project directory:
 
    ```bash
-   cd weather-info-script
+   cd getweather
    ```
 
 3. Make the script executable:
 
    ```bash
-   chmod +x weather.sh
+   chmod +x getweather.sh
    ```
 
 ## Usage
