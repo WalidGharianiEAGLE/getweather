@@ -52,9 +52,10 @@ Enter the city for weather information: Berlin
 City: Berlin
 Country: DE
 Coordinates: [52.5244, 13.4105]
-Temperature: 26.72 °C (min: 25.55, max: 28.9)
-Air Pressure: 1003
-Humidity: 49
+Temperature: 24.69 °C (min: 21.66, max: 26.1)
+Humidity: 56 %
+Air Pressure: 1003 hPa
+Wind Speed: 2.57 m/s
 Weather: Clear, clear sky
 ASCII Art Representation:
 🌞🌞
