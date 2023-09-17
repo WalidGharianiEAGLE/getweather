@@ -8,6 +8,11 @@ This Bash script allows you to obtain current weather data for any location in t
 
 Before using this script, you need to sign up for an OpenWeatherMap API key. You can obtain an API key by creating an account at [OpenWeatherMap](https://openweathermap.org/).
 
+Install jq (command-line JSON processor). If jq is not already installed on your system, you can download and install it from the official website https://jqlang.github.io/jq/download/. For example on Debian/Ubuntu-based
+
+```bash
+sudo apt-get install jq
+```
 ### Installation
 
 1. Clone this repository to your local machine:
