@@ -54,14 +54,6 @@ Weather: Clear, clear sky
 ASCII Art Representation:
 🌞🌞
 ```
-## Configuration
-
-There are no additional configuration options for this script.
-
-## Contributing
-
-If you would like to contribute to this project, please follow the guidelines outlined in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
