@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# get a specific field
+get_field() {
+  jq -r "$2" <<< "$1"
+}
+
 extract_weather_data() {
   local weather_data="$1"
   city=$(get_field "$weather_data" '.name')
@@ -12,8 +17,18 @@ extract_weather_data() {
   humidity=$(get_field "$weather_data" '.main.humidity')
   pressure=$(get_field "$weather_data" '.main.pressure')
   wind=$(get_field "$weather_data" '.wind.speed')
+  wind_degr=$(get_field "$weather_data" '.wind.deg')
+  visibility_meter=$(get_field "$weather_data" '.visibility')
+  visibility_km=$( bc -l <<< "scale=2; ($visibility_meter /1000)")
   sky_main=$(get_field "$weather_data" '.weather[0].main')
   sky_desc=$(get_field "$weather_data" '.weather[0].description')
+}
+
+get_wind_orientation(){
+  wind_run=$( bc -l <<< "scale=2; ($wind_degr /22.5)")
+  wind_run_int=$(printf "%.0f" "$wind_run")
+  orientation=("N" "NNE" "NE" "ENE" "E" "ESE" "SE" "SSE" "S" "SSW" "SW" "WSW" "W" "WNW" "NW" "NNW" "N")
+  compass_direction="${orientation[$wind_run_int]}"
 }
 
 display_weather_data() {
@@ -23,7 +38,8 @@ display_weather_data() {
   echo "Temperature: $temp °C (min: $temp_min, max: $temp_max)"
   echo "Humidity: $humidity %"
   echo "Air Pressure: $pressure hPa"
-  echo "Wind Speed: $wind m/s"
+  echo "Wind: $wind m/s $compass_direction"
+  echo "Visibility: $visibility_km km"
   echo "Weather: $sky_main, $sky_desc"
 }
 
@@ -46,11 +62,6 @@ map_weather_to_ascii() {
         "Clouds") echo "☁️☁️☁️" ;;
         *) echo "🤷‍♂️" ;;
     esac
-}
-
-# get a specific field
-get_field() {
-  jq -r "$2" <<< "$1"
 }
 
 # Function to get weather information
@@ -78,6 +89,7 @@ get_weather() {
 
   # Extract weather information and pass it to extract_weather_data
   extract_weather_data "$weather_data"
+  get_wind_orientation
   display_weather_data
   # Map the weather description to ASCII art
   weather_ascii=$(map_weather_to_ascii "$sky_main")
