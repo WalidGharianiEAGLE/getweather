@@ -26,7 +26,7 @@ extract_weather_data() {
 
 get_wind_orientation(){
   wind_run=$( bc -l <<< "scale=2; ($wind_degr /22.5)")
-  wind_run_int=$(printf "%.0f" "$wind_run")
+  wind_run_int=${wind_run%.*}
   orientation=("N" "NNE" "NE" "ENE" "E" "ESE" "SE" "SSE" "S" "SSW" "SW" "WSW" "W" "WNW" "NW" "NNW" "N")
   compass_direction="${orientation[$wind_run_int]}"
 }
